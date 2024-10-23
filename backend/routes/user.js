@@ -230,7 +230,12 @@ router.delete('/', authMiddleware, async (req, res) => {
             const resp = await User.deleteOne({
                 _id: req.userId
             })
-            if (resp.acknowledged) {
+
+            const resp1 = await Account.deleteOne({
+                userId: req.userId
+            })
+
+            if (resp.acknowledged && resp1.acknowledged) {
                 return res.json({
                     message: "Account deletion Successful"
                 })
