@@ -14,6 +14,8 @@ function SendMoney() {
     const transfer = async () => {
         if (amount === 0)
             setError("Enter Amount")
+        else if(amount<0)
+            setError("Enter Valid Amount)
         else {
             const resp = await axios.post(import.meta.env.VITE_BACKEND_URL + 'account/transfer', {
                 amount: amount,
